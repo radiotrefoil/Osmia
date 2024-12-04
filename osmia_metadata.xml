@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<metadata>
+    <name>Osmia</name>
+    <language>en-AU</language>
+    <desc>Osmia is a set of tools for analysis of OpenStreetMap data, and publication of OpenStreetMap-compatible third-party data, for the purpose of quality control and enhancement of the OpenStreetMap database.</desc>
+    <author>
+        <name>Peter LeGras</name>
+        <email id="peter.legras" domain="postgrad.curtin.edu.au"/>
+        <link href="http://157.245.201.158/~LeGras/">
+        <text>Osmia</text>
+        </link>
+    </author>
+    <time>2024-05-30T00:00:00Z</time>
+    <source>The data is derived from OpenStreetMap database, retrieved by Nominatim API and Overpass API. Additionally, a dataset "Generalised Land Use 2022 (shp)" from Department for Trade and Investment (South Australia) was used; <a href="https://data.sa.gov.au/data/dataset/land-use-generalised">Landing page</a>. All data is licensed under <a href="https://opendatacommons.org/licenses/odbl/">Open Database Licence</a>.</source>
+    <keywords>OpenStreetMap, Overpass, Nominatim, Openlayers, South Australia, metadata query</keywords>
+    <bounds minlat="-90" maxlat="90" minlon="-180" maxlon="180"/>
+</metadata>

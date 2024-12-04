@@ -1,0 +1,174 @@
+body {
+    background: rgb(245, 245, 245);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+@media screen and (min-width: 1000px) {
+    .thecontainer {
+        margin: 0 20% 0 20%;
+    }
+}
+header {
+    background: rgb(227,245,210);
+    color: white;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    position: relative;
+    z-index: 999;
+}
+
+div.logo {
+    width: 140px;
+}
+
+div.logo img {
+    width: 100px;
+    margin: 20px;
+    padding: 0px;
+}
+nav {
+    background: none;
+    margin: 0;
+}
+nav ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: -10px;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+    background: rgb(113, 196, 113);
+    color: white;
+    padding: 10px;
+    border-style: outset;
+    border-width: 1px;
+    border-color: rgb(90, 226, 90);
+}
+
+nav a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+nav li:hover {
+    background:rgb(115, 230, 115);
+}
+
+li.active {
+    background: white;
+    border-style: inset;
+    color: black
+}
+
+div.green_bar {
+    background:  rgb(160, 211, 134);
+    height: 10px;
+    margin: 0;
+}
+div.thecontainer {
+    background:white;
+    padding: 20px;
+}
+div ul {
+    margin: 0;
+}
+
+
+.module {
+    padding: 20px;
+
+}
+
+.body_text{
+    background-color: rgb(245, 245, 245);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+.body_heading h2{
+    margin: 0;
+}
+
+p a {
+    color: #007398;
+    text-decoration: none;
+}
+
+.body_text a {
+    color: #007398;
+    text-decoration: none;
+}
+
+.mod_text {
+    flex-grow: 1;
+    padding-right: 10px;
+    margin: 0px;
+}
+.mod_img {
+    width: 250px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mod_img img{
+    padding:0px;
+    margin:0px;
+    border-color:rgb(154, 175, 154);
+    border-width: 1px;
+    border-style: solid;
+}
+
+.mod_img p{
+    text-align: center;
+    background-color: white;
+    border-color:rgb(154, 175, 154);
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 0;
+    width:100%;
+}
+
+footer {
+    background:  rgb(113, 196, 113);
+    height: 40px;
+    margin: 0;
+    display: flex;
+    color:white;
+}
+footer div {
+    margin:auto;
+}
+
+footer a{
+    color: inherit;
+}
+
+code {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    box-shadow:
+      0 1px 1px rgba(0, 0, 0, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+
+  #yearSlider {
+    accent-color: rgb(113, 196, 113);
+  }
+
+  .radioButton {
+    accent-color: #008000;
+  }

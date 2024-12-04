@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osmia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href = "jquery-ui.css" rel = "stylesheet">
+</head>
+<body>
+    <header class="thecontainer">
+        <div style="display: flex;">
+            <div class="logo"><a href="index.html"><img src="logo.svg"/></a></div>
+            <h1 style="color:white;margin: auto;font-family: 'Times New Roman', Times, serif;text-shadow: 1px 1px 2px green;"><i><strong>Maintenance tools for OpenStreetMap</strong></i></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Map Inspection Tools</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="green_bar"></div>
+        </nav>
+    </header>
+    <div class="thecontainer">
+        <div class="body_heading module">
+            <h2>About OpenStreetMap</h2>
+        </div>
+        <div class="body_text module"> 
+
+            <div class="mod_text">
+                <p> 
+                Have you ever wanted a list of all the public parks in your town? Or fast food restaurants in your country? Curious about the mysterious infrastructure down the road? Plotting fruit trees in your neighbourhood? OpenStreetMap may be of interest to you. <br /><a href="https://www.openstreetmap.org/"><strong>OpenStreetMap</strong></a> (OSM) is a non-proprietary crowd-sourced map of the world. Similarly to Wikipedia, anyone can edit it, and it is free to use commercially without obtaining an API key. Under the hood, it is a database containing structured geographic data about the world which can be plotted visually as a map. <br /> Nearly any object of interest and its attributes can be stored and retrieved; be it physical (roads, buildings, forests, fire hydrants, waterways...) or conceptual (businesses, addresses, political borders, national parks, routes, landuse...). <br /> Objects can be described, queried and visualised by attributes, such as their name, the intermittancy of a waterway, if a building is a garage, the voltage of a power line, and nearly anything else you can imagine. <br /> OSM and its derivatives are commonly used as basemaps, for navigation and routing, visualising networks, accessibility, fitness and many other purposes. Most people use it quite often without realising. <br /> <a href="https://www.openstreetmap.org/about">Learn more about OpenStreetMap ➡️</a>
+                </p>
+                <p>
+                <strong>Osmia</strong> provides some tools that help keep the data in OpenStreetMap complete and up-to-date. Check out the modules below and <a href="https://www.openstreetmap.org/user/new">start mapping</a>!
+                </p>
+            </div>
+            <div class="mod_img">
+                <img src="osm_sample.png" alt="OpenStreetMap screenshot" style="width:250px;height:250px;">
+                <p>A screenshot of OpenStreetMap displayed in OSM-Carto style</p>
+            </div>
+        </div> 
+        <div class="body_heading module">
+            <h2>Obsolete Road Geometry Tool</h2>
+        </div>
+        <div class="body_text module"> 
+            <div class="mod_text">
+                <p> 
+                Quality control tools greatly benefit map maintainers. The purpose of this tool is to find map features, in this case roads or paths, that have not been updated in a long time. <br />
+                In most cases, roads in OSM are traced from aerial photography. Imagery providers occasionally permit data access to OSM mappers for tracing (ie. digitising) map features, especially roads and buildings. Imagery providers include Bing, ESRI and Government sources (especially in NSW and ACT and some councils in Brisbane). <br /> Aerial imagery layers were not typically very spatially accurate or high resolution before 2020, in which Bing collected high quality and precisely georeferenced imagery for Microsoft Flight Simulator. Therefore we can assume that map features last edited before 2020 are likely to be inaccurate. </p>
+                <p> Osmia's Obsolete Road Geometry Tool detects and highlights geometry that is likely to be obsolete. Roads are linear features with vertices at the beginning, end and bends.<br />
+                <h4>Using the tool</h4>
+                <ol>
+                <li>Start off by choosing a town where you want to map.</li> 
+                <li>Choose what level of roads you are interested in viewing. Osmia segregates these roads to avoid the map from becoming too cluttered.</li> 
+                <li>Choose to inspect lines as a whole, or dive deeper by inspecting the individual vertices. Inspecting lines gives a quick overview. Inspecting vertices provides much more detail and less prone to false negatives (however it can become cluttered). You can also add both if you like, just submit the query twice.</li>
+                <li>You may choose the basemap or individually turn on and off the geometry using the layer selector: <img src="layerSwitch.svg" style="display: inline; width: 20px;"></li>
+                </ol>
+                Older geometry is coloured increasingly <strong style="color: red;">red</strong>, whereas new geometry is hidden. You can then assess whether the geometry needs updating by comparing it to the Bing aerial basemap, which is used as a "ground truth" source. <br /> When you have identified the offending geometry, simply click it and follow the link to the OpenStreetMap editor to fix it.
+                <br />
+                Alternatively, you can download the features that are older than a certain year; this allows you to load them directly into OpenStreetMap. Simply drag the GeoJSON file into the editor window. Whether vertices or lines are downloaded depends on the radio button selection.
+                </p>
+                <a class="ui-button" href="tools.html?tab=vintage"> Launch the Tool</a>
+            </div>   
+            <div class="mod_img">
+                <img src="vintage_lines.png" alt="OpenStreetMap screenshot" style="width:250px;">
+                <p>Road line geometry coloured by vintage</p>
+
+                <img src="vintage_vertices.png" alt="OpenStreetMap screenshot" style="width:250px;">
+                <p>Road vertex geometry coloured by vintage</p>
+            </div> 
+        </div>
+        <div class="body_heading module">
+            <h2>Missing Road Surfaces Tool</h2>
+        </div>
+        <div class="body_text module"> 
+
+            <div class="mod_text">
+                <p> 
+                It is important for navigation, safety and accessibility to know if a road surface is paved or not.
+                </p>
+                <p> Osmia's Missing Road Surfaces Tool detects and highlights road and path features that do not have a surface attribute associated. You can usually determine the surface from recent aerial imagery such as Bing. The generic way of tagging a surface is using the key/value combination <code>surface=paved</code> or <code>surface=unpaved</code>. However, if you wish you can be more specific by listing the surface material, such as <code>surface=asphalt</code> or <code>surface=concrete</code>. If you are unable to determine the surface confidently (eg. in tree-covered areas), best ignore it. You may refer to the <a href="https://wiki.openstreetmap.org/wiki/Key:surface">OpenStreetMap Wiki</a> for typical tag combinations.<br />
+                    <h4>Using the tool</h4>
+                    <ol>
+                    <li>Start off by choosing a town where you want to map.</li> 
+                    <li>Choose if you want to show only the main road network. Osmia segregates these roads to avoid the map from becoming too cluttered. In this case, only showing the main road network sets low priority thoroughfares (eg. service roads, footpaths and tracks) to a very low opacity</li> 
+                    <li>You can switch the map background to a different source if you wish </li>
+                    </ol>
+                    More important roads are weighted increasingly <strong>thick</strong>. Note that roads tagged as <code>highway=path</code> or <code>highway=track</code> are drawn with a dashed line. This is because in Australia these roads are usually implied to be unpaved already, so generally it is not a priority to tag them with a <code>surface</code> (though you are welcome to). <br /> When you have identified the offending geometry, simply click it and follow the link to the OpenStreetMap editor to fix it.
+                    <br />
+                    Alternatively, you can download the features that have no <code>surface</code>; this allows you to load them directly into OpenStreetMap. Simply drag the GeoJSON file into the editor window.
+                    </p>
+                    <a class="ui-button" href="tools.html?tab=surface"> Launch the Tool</a>
+            </div>
+            <div class="mod_img">
+                <img src="surface.png" alt="OpenStreetMap screenshot" style="width:250px;height:250px;">
+                <p>Road geometry without surface tags are highlighted</p>
+            </div>
+        </div> 
+        <div class="body_heading module">
+            <h2>Landuse in South Australia</h2>
+        </div>
+        <div class="body_text module"> 
+
+            <div class="mod_text">
+                <p> There is a wealth of open data available for mapping on the internet. However integrating open data into OpenStreetMap has its challenges. <br />
+                    OpenStreetMappers can use a variety of Open Data sources to integrate data into the OSM database if the data custodian has given permission. Creative Commons data sources can be used in OpenStreetMap, but they require a waiver to abide by the terms of the Open Database Licence (ODbL). <br />
+                    Some data custodians have generously provided this, such as the Government of South Australia, but unfortunately have not served the data in a format that is interoperable with the OSM online editor "iD". Using web services such as XYZ (ie. TMS) and WMS layers are easy, however providing raw vector data such as GeoJSON and Shapefiles are not unless they are very small filesize.
+                </p>
+                <p>Osmia has received a <a href="https://data.sa.gov.au/data/dataset/land-use-generalised">useful dataset</a> from the Government of South Australia that is ready to be manually integrated into OpenStreetMap, however it needs to be served as a web service. This tool provides a preview of the dataset that is running on this host server's Geoserver instance. You can view the preview below and use it directly in OpenStreetMap online editor by following the WMS or TMS links provided. Osmia has constructed the request URLs so you don't have to! 
+                </p><p>
+                The dataset in question shows landuse polygons at a block/cadastre level. Osmia has stylised this with intuitive colours and labels. It is useful for mappers to find unmapped reserves, or realign existing polygons to the official lot boundaries. Enjoy mapping South Australia!</p>
+                <a class="ui-button" href="tools.html?tab=samap"> Launch the Tool</a>
+            </div>
+            <div class="mod_img">
+                <img src="salanduse.png" alt="SA Landuse screenshot" style="width:250px;height:250px;">
+                <p>A screenshot of the SA Land use with Osmia SLD style</p>
+            </div>
+        </div>
+
+    </div>
+    <footer class="thecontainer">
+        <div>Peter LeGras</div>
+        <div><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg" style="height:30px;"></a></div>
+        <div><a href="about.html">About</a></div>
+        <div>&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></div>
+    </footer>
+</body>
+</html>

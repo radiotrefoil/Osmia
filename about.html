@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osmia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link href = "jquery-ui.css" rel = "stylesheet">
+</head>
+<body>
+    <header class="thecontainer">
+        <div style="display: flex;">
+        <div class="logo"><a href="index.html"><img src="logo.svg"/></a></div>
+        <h1 style="color:white;margin: auto;font-family: 'Times New Roman', Times, serif;text-shadow: 1px 1px 2px green;"><i><strong>Maintenance tools for OpenStreetMap</strong></i></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tools.html">Map Inspection Tools</a></li>
+                <li class="active"><a href="about.html">About</a></li>
+            </ul>
+            <div class="green_bar"></div>
+        </nav>
+    </header>
+    <div class="thecontainer">
+        <div class="body_heading module">
+            <h2>About Osmia and the author</h2>
+        </div>
+        <div class="body_text module"> 
+
+            <div class="mod_text">
+                <p> The first finished version of Osmia was conceived by Peter LeGras on 30<sup>th</sup> May 2024. Peter has been one of Australia's most active OpenStreetMap contributors since 2020 and is a big fan of all things free and open source. Peter is, at the time of publication, a postgraduate Geospatial student at Curtin University. Peter's undergraduate education was in Photovoltaics (Solar) energy engineering at University of NSW in Sydney.<br />
+                    
+                <ul>
+                    <li><a target="_blank" href="https://www.openstreetmap.org/user/2hu4u">Peter's OpenStreetMap account</a></li>
+                    <li><a target="_blank" href="https://en.wikipedia.org/wiki/User:Radiotrefoil">Peter's Wikipedia account</a></li>
+                    <li><a target="_blank" href="https://github.com/2hu4u">Peter's (very bare) Github</a></li>
+                </ul>
+                <br />
+                The name <i>Osmia</i> is derived from the bee genus, as well as being a pun on "OSM". I thought that it could reference the bee's reputation for collaborative work, but it turns out that this particular bee genus members are solitary and do not actually have workers like honey bees do. I suppose that is amusing too.
+
+                <h4>Metadata</h4>
+                <h5>Osmia</h5>
+                <ul>
+                    <li><a href="osmia_metadata.xml">Metadata XML</a> (not standard compliant)</li>
+                    <li>The website content is licensed under <a href="http://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>. Datasets derived from OpenStreetMap and data.SA are licensed under <a href="https://opendatacommons.org/licenses/odbl/">Open Database Licence (ODbL) 1.0</a>. The javascript libraries used are listed below.</li>
+                </ul>
+
+                <h5>OpenStreetMap</h5>
+                <ul>
+                    <li>&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></li>
+                </ul>
+                <h5>SA Landuse Map</h5>
+                <p>The dataset served by Osmia is the property of Department for Trade and Investment (South Australia). The dataset <strong>Generalised Land Use 2022 (shp)</strong> was retrieved from data.SA on 29<sup>th</sup> May 2024.</p>
+                    <ul>
+                        <li>The dataset is licensed under <a href="http://creativecommons.org/licenses/by/4.0">CC BY 4.0</a> with waiver for <a href="https://opendatacommons.org/licenses/odbl/">Open Database Licence</a> available <a href="https://wiki.openstreetmap.org/wiki/File:Data.sa.gov.au_CCBYPermission_Open_Street_Map.pdf">here</a></li>
+                        <li>View the <a href="https://data.sa.gov.au/data/dataset/land-use-generalised">dataset landing page</a></li>
+                        <li>Download the <a href="9712e707-1a7a-464e-a4c3-980f40770d48.xml">ISO19115 XML</a></li>
+                    </ul>
+                
+                <h4>Acknowledgements</h4>
+                Osmia mostly works using the <a href="https://operations.osmfoundation.org/policies/nominatim/">Nominatim</a> and <a href="https://github.com/drolbr/Overpass-API">Overpass API</a>s as well as various JS libraries, including:
+                <br />
+                <ul>
+                    <li><a target="_blank" href="https://openlayers.org/">Openlayers</a></li>
+                    <li><a target="_blank" href="https://github.com/tyrasd/osmtogeojson">osmtogeojson</a> (dev: <a target="_blank" href="https://github.com/tyrasd/">Martin Raifer</a>)</li>
+                    <li>jquery-ui</li>
+                    <li><a target="_blank" href="https://github.com/walkermatt/ol-layerswitcher">ol-layerswitcher</a> (dev: <a target="_blank" href="https://github.com/walkermatt/">Matt Walker</a>)</li>
+                </ul>
+                <br />
+                Additionally, the following resources have helped with my understanding of Javascript through the development of Osmia:
+                <br />
+                <ul>
+                    <li>Matthew Proctor's <a target="_blank" href="https://github.com/matthewproctor/australianpostcodes">list of Australian postcodes</a> </li>
+                    <li>W3 Schools tutorials on HTML, JS and CSS</li>
+                    <li>Numerous users on Stack Overflow (See <a target="_blank" href="stackoverflowlist.txt">big list of Stack Overflow URLs</a> that have informed my knowledge somewhat)</li>
+                    <li>Ivana Ivánová's Web mapping lecture slides and labs</li>
+                    <li>Various friends of mine; <a target="_blank" href="https://github.com/Cimera42">Tim Porritt</a>, <a target="_blank" href="https://github.com/jonogreenz">Jono Green</a> and <a target="_blank" href="https://github.com/MxBlu">Jumail Mundekkat</a> for some JS help and troubleshooting</li>
+                </ul>
+                </p>
+            </div>
+            <div class="mod_img">
+                <img src="logo.svg" alt="Osmia Logo" style="width:250px;height:250px;">
+                <p>Osmia Logo</p>
+            </div>
+        </div> 
+        
+
+    </div>
+    <footer class="thecontainer">
+        <div>Peter LeGras</div>
+        <div><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg" style="height:30px;"></a></div>
+        <div><a href="about.html">About</a></div>
+        <div>&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osmia</title>
+    
+    <link rel="stylesheet" href="tabStyle.css">
+    <link rel="icon" href="favicon.ico">
+
+    <!-- JQuery is necessary for the autocomplete form input box to work -->
+    <link href = "jquery-ui.css" rel = "stylesheet">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <!-- Openlayers stuff-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.0.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v9.0.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="openlayersWidgets.css">
+
+    <!-- This library converts OSM XML to GeoJSON -->
+    <script src='osmtogeojson.js'></script>
+
+    <!-- This script has the Autocomplete fields list, it is a big list of Australian suburbs and postcodes -->
+    <script src='suburbList.js'></script>
+
+    <!-- Layer switcher OL extension -->
+    <script src='http://raw.githack.com/walkermatt/ol-layerswitcher/master/dist/ol-layerswitcher.js'></script>
+    <link href="layerSwitcher.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="thecontainer">
+        <div style="display: flex;">
+            <div class="logo"><a href="index.html"><img src="logo.svg"/></a></div>
+            <h1 style="color:white;margin: auto;font-family: 'Times New Roman', Times, serif;text-shadow: 1px 1px 2px green;"><i><strong>Maintenance tools for OpenStreetMap</strong></i></h1>
+            </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="tools.html">Map Inspection Tools</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <div class="green_bar"></div>
+        </nav>
+    </header>
+    <div class="thecontainer">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab('vintage')">Obsolete Road Geometry</button>
+            <button class="tablinks" onclick="openTab('surface')">Missing Road Surfaces</button>
+            <button class="tablinks" onclick="openTab('samap')">South Australia Landuse</button>
+        </div>
+
+        <!-- Obsolete Road Geometry Tool tab -->
+        <div id="vintage" class="tabcontent">
+
+            <!-- Main user input area -->
+            <div class = "ui-widget">
+                <form name="location" onsubmit="nominatimQuery(event)">
+                    <label for="autocompleter">Type a suburb or postcode:</label>
+                    <input id = "autocompleter" name="locationString">
+                    <label for="geometryLevel">Inspect:</label>
+                    <select name="geometryLevel" id="geometryLevel">
+                        <option value="path">Paths and Walkways</option>
+                        <option value="service">Service Roads and Tracks</option>
+                        <option value="minor">Minor Roads</option>
+                        <option value="major">Major Roads</option>
+                    </select>
+                    <input type="radio" class="radioButton" name="nodeway" id="noderadio" value="node" checked />
+                    <label for="noderadio">Vertices</label>
+                    <input type="radio" class="radioButton" name="nodeway" id="wayradio" value="way" checked />
+                    <label for="wayradio">Lines</label>
+                    <input type="submit" value="Submit" class="ui-button">
+                </form>
+            </div>
+
+            <!-- The map canvas -->
+            <div id="map" class="map"></div>
+
+            <!-- Download/clear buttons -->
+            <div id="toolsVintage" style="display: inline-block;">
+                <p style="display: inline-block;">Download features older than: </p>
+                <input id="yearSlider" style="display: inline-block;transform: translate(0px, 6px);" type="range" min="2007" max="" value="" />
+                <div id="sliderAmount" style="display: inline-block;"></div>
+                <script>
+                    var slide = document.getElementById("yearSlider"),
+                    sliderDiv = document.getElementById("sliderAmount");
+                    yearSlider.max=new Date().getFullYear().toString();
+                    slide.onchange = function() {
+                        sliderDiv.innerHTML = this.value;
+                    }
+                </script>
+                <a class="ui-button" id="clearVintage">Clear</a>
+                <a class="ui-button" id="downloadVintage" download="features.json">Download</a>
+                <div id="numFeatures" style="display: inline-block;">dummy text</div>
+            </div>
+
+            <!-- Popup overlay -->
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+        </div>
+
+        <!-- Missing Road Surface Tool tab -->
+        <div id="surface" class="tabcontent">
+
+            <!-- Main user input area -->
+            <div class = "ui-widget">
+                <form name="location2" onsubmit="nominatimQuery2(event)">
+                    <label for="autocompleter2">Type a suburb or postcode:</label>
+                    <input id = "autocompleter2" name="locationString2">
+                    <input type="submit" value="Submit" class="ui-button">
+                </form>
+                <input class="radioButton" type="checkbox" id="minormajor" name="minormajor" value="myValue">
+                <label for="minormajor">Show only main road network</label>
+            </div>
+    
+            <!-- The map canvas for road surface tool -->
+            <div id="map2" class="map"></div>
+
+            <!-- Download/clear buttons -->
+            <div id="tools" >
+                <a class="ui-button" id="clear">Clear</a>
+                <a class="ui-button" id="download" download="features.json">Download</a>
+            </div>
+
+            <!-- Popup overlay -->
+            <div id="popup2" class="ol-popup">
+                <a href="#" id="popup-closer2" class="ol-popup-closer"></a>
+                <div id="popup-content2"></div>
+            </div>
+        </div>
+
+        <!-- South Australia Landuse Tool tab -->
+        <div id="samap" class="tabcontent">
+            <p> This might take a little while to load. </p>
+            <div id="map3" class="map"></div>
+
+            <div> <p> <a id="osmtms" target="_blank" href="">Click here</a> to add this TMS layer as a custom background in OpenStreetMap!</p>
+            <p>Alternatively, add this link as a custom WMS layer: <input style="height:22px;margin-right:5px;" type="text" value="" id="wmsText"><button class="ui-button" onclick="textCopier()">Copy text</button></p>
+            </div>
+            <script>
+                // I am using location.origin to find the host server's IP address because I'm not sure what it will be on Ivana's server.
+                const theUrl="https://www.openstreetmap.org/edit?editor=id#background=custom:http://157.245.201.158:8080/geoserver/gwc/service/tms/1.0.0/LeGras%3ALandUseGeneralised2022_GDA2020@WebMercatorQuad@png/{z}/{x}/{-y}.png&map=6/-32.5/134.5"
+                osmtms.href=theUrl;
+                const theWMSurl="http://157.245.201.158:8080/geoserver/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=false&STYLES&LAYERS=LeGras%3ALandUseGeneralised2022_GDA2020&SRS=EPSG%3A3857&WIDTH={width}&HEIGHT={height}&BBOX={bbox}"
+                wmsText.value=theWMSurl;
+                // This function was adapted from the w3 schools tutorial on copying text to user's clipboard.
+                function textCopier() {
+                    // Get the text field
+                    var copyText = document.getElementById("wmsText");
+
+                    // Select the text field
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                    // Copy the text inside the text field
+                    navigator.clipboard.writeText(copyText.value);
+                }
+            </script>
+        </div>
+
+        <!-- The Openlayers main javascript goes here -->
+        <script src='roadVintage.js'></script>
+
+        <!-- The script is for showing and hiding the tabs. 
+        Adapted from W3schools tutorial: https://www.w3schools.com/howto/howto_js_tabs.asp 
+        Modified to handle querystrings
+        -->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const theTab = urlParams.get('tab');
+            if (theTab != null){
+                openTab(theTab);
+            } else {
+                openTab("vintage");
+            }
+            function openTab(toolname) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(toolname).style.display = "block";
+                //evt.currentTarget.className += " active";
+                if (toolname=="vintage") {
+                    tablinks[0].className += " active";
+                }
+                if (toolname=="surface") {
+                    tablinks[1].className += " active";
+                }
+                if (toolname=="samap") {
+                    tablinks[2].className += " active";
+                }
+            }
+            </script>
+    
+    </div>
+
+    <footer class="thecontainer">
+        <div>Peter LeGras</div>
+        <div><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg" style="height:30px;"></a></div>
+        <div><a href="about.html">About</a></div>
+        <div>&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a></div>
+    </footer>
+
+</body>
+</html>
