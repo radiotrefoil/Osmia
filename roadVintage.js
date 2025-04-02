@@ -212,7 +212,7 @@ const cartodb_positron = new TileLayer({
     title: 'OSM CartoDB Positron',
     type: 'base',
     source: new ol.source.XYZ({
-        url: 'http://s.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        url: 'https://s.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
         attributions: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions" target="_blank">CartoDB</a>'
     })
 });
